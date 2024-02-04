@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html>
+    <title>Betaflight CLI Commands for Racing Drones (2" to 4")</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        /* The Modal (background) */
+        .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 60%; /* Full width */
+        height: 600%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        }
+
+    </style>        
+   <head>
+      <script>
+         function concatenate(name, subject) {
+            var val;
+            val = name + subject;
+            return val;
+         }
+         function DisplayFunction() {
+            var frame = document.getElementById("frame").value;
+            var flightController = document.getElementById("flight-controller").value;
+
+            // presets based on user entries
+            var includeOSD = document.getElementById("include-osd").checked;
+            var includeModes = document.getElementById("include-modes").checked;
+            var includeBlackbox = document.getElementById("include-blackbox").checked;
+            // var elrsUART = document.getElementById("elrs-rx-uart").value - 1;
+            // var hdzeroUART = document.getElementById("hdzero-vtx-uart").value - 1;
+
+            var craftName = document.getElementById("craft-name").value;
+            var pilotName = document.getElementById("pilot-name").value;
+            var elrsRxPortId = document.getElementById("elrs-rx-uart").value - 1;
+            var hdzeroVtxPortId = document.getElementById("hdzero-vtx-uart").value - 1;
+            var vtxBand = document.getElementById("vtx-band").value;
+            var vtxChannel = document.getElementById("vtx-channel").value;
+            var batteryCapacity = document.getElementById("battery-capacity").value;
+            var vbatScale = document.getElementById("vbat-scale").value;
+            var ibataScale = document.getElementById("ibata-scale").value;
+            var escPWMFrequency = document.getElementById("esc-pwm-frequency").value;
+            var propSizeInInches = document.getElementById("prop-size-inches").value;
+            var throttleScalePercent = document.getElementById("throttle-scale-percent").value;
+
+            var accelerometerHardware = document.getElementById("acc-hardware").checked ? "AUTO" : "NONE";
+            var crashRecovery = document.getElementById("crash-recovery").checked == true ? "ON" : "OFF";
+            if(crashRecovery == "ON") {
+                accelerometerHardware = "AUTO"; // need accelerometer on to use crash recovery
+            }
+
+            // presets based on frame
+            if(frame == "UBR116LP") {
+                propSizeInInches = 2.0;
+            }
+            else if(frame == "UBR128LP") {
+                propSizeInInches = 2.5;
+            }
+
+            // presets based on flight controller
+            if(flightController == "TURC") {
+                elrsRxPortId = 1;
+                hdzeroVtxPortId = 0;
+                vbatScale = 111;
+                ibataScale = 650;
+                escPWMFrequency = 24;
+                includeBlackbox = true;
+            }
+
+            // presets based on frame and flight controller
+            if(frame == "UBR116LP" && flightController == "TURC") {
+            }
+            else if(frame == "UBR128LP" && flightController == "TURC") {
+                
+            }
+
+
+
+            var result = "";
+            // result = "<pre>";
+            // result = result + "\n<code>";
+            // result = result + concatenate("\nset craft_name = ", craftName);
+            // result = result + concatenate("\nset pilot_name = ", pilotName);
+            // result = result + concatenate("\nset vtx_band = ", vtxBand);
+            // result = result + concatenate("\nset vtx_channel = ", vtxChannel);
+            
+            // if(batteryCapacity > 0) {
+            //     result = result + concatenate("\nset bat_capacity = ", batteryCapacity);
+            // }
+
+            // if(vbatScale > 0) {
+            //     result = result + concatenate("\nset vbat_scale = ", vbatScale);
+            // }
+
+            // if(ibataScale > 0) {
+            //     result = result + concatenate("\nset ibata_scale = ", ibataScale);
+            // }
+
+            // if(batteryCapacity > 0) {
+            //     result = result + concatenate("\nset osd_cap_alarm = ", (batteryCapacity * 0.70));
+            // }
+            // result = result + concatenate("\nset thrust_linear = ", (escPWMFrequency >= 48 ? 20 : 0));
+            
+            // if(propSizeInInches > 0) {
+            //     result = result + concatenate("\nset dyn_idle_min_rpm = ", ((15000 / propSizeInInches) / 100));
+            // }
+
+            // if((throttleScalePercent >= 70) && (throttleScalePercent < 100)) {
+            //     result = result + "\nset throttle_limit_type = SCALE";
+            //     result = result + concatenate("\nset throttle_limit_percent = ", throttleScalePercent);
+            // }
+            // else {
+            //     result = result + "\nset throttle_limit_type = OFF";
+            // }
+
+            result += "\n# --";
+            result += "\n# -- Ports";
+            result += "\n# --";
+            result += "\n# -- https://intofpv.com/t-cli-reference-the-serial-command";
+            result += "\n# -- serial <Port ID> <Function ID> <MSP Baud Rate> <GPS Baud Rate> <Telemetry Baud Rate> <Blackbox Baud Rate>";
+            result += "\n# -- HDZERO = MSP + Display Port = 1 + 131072 = 131073";
+            result += "\nserial " + hdzeroVtxPortId + " 131073 0 0 0 0";
+            result += "\n# -- ELRS RX = Serial RX = 64 plus default baud rates";
+            result += "\n# -- 1 = UART2, 64 = Serial RX, 115200 = Baud Rate";
+            result += "\nserial " + elrsRxPortId + " 64 0 0 0 0";
+            result += "\n";
+            
+
+            result += "\n# --";
+            result += "\n# -- Features";
+            result += "\n# --";
+            result += "\nfeature -AIRMODE";
+            result += "\nfeature RX_SERIAL";
+            result += "\nfeature TELEMETRY";
+            result += "\nfeature MOTOR_STOP";
+            result += "\nfeature OSD";
+
+
+            result += "\n# --";
+            result += "\n# -- Configuration Tab Settings";
+            result += "\n# --";
+            result += "\nset small_angle = 180";
+            result += concatenate("\nset acc_hardware = ", accelerometerHardware);
+            result += concatenate("\nset craft_name = ", craftName);
+            result += concatenate("\nset pilot_name = ", pilotName);
+
+
+            result += "\n# --";
+            result += "\n# -- Power & Battery Tab Settings";
+            result += "\n# --";
+            if(batteryCapacity > 0) {
+                // battery voltage scale
+                result = result + concatenate("\nset bat_capacity = ", batteryCapacity);
+            }
+            if(vbatScale > 0) {
+                // battery current scale
+                result = result + concatenate("\nset vbat_scale = ", vbatScale);
+            }
+            if(ibataScale > 0) {
+                result = result + concatenate("\nset ibata_scale = ", ibataScale);
+            }
+            result += "\nset vbat_max_cell_voltage = 440";
+
+
+            result += "\n# --";
+            result += "\n# -- PID Tuning Tab Settings";
+            result += "\n# --";
+            // reset profile 0 settings
+            result += "\nprofile 0";
+            // reset rateprofile 0 settings
+            result += "\nrateprofile 0";
+            result += "\n# --";
+            result += "\n# -- PID Tuning Tab Settings (PID Profile Settings)";
+            result += "\n# --";
+            result += "\nset profile_name = Race";
+            // Use 30 - 40 for a race profile
+            result += "\nset iterm_relax_cutoff = 40";
+            result += "\nset throttle_boost = 0";
+            result = result + concatenate("\nset thrust_linear = ", (escPWMFrequency >= 48 ? 20 : 0));
+            if(propSizeInInches > 0) {
+                result = result + concatenate("\nset dyn_idle_min_rpm = ", ((15000 / propSizeInInches) / 100));
+            }
+            result += "\nset vbat_sag_compensation = 100";
+            // To only cover the slow fall, set vbat_sag_lpf_period to 200 (20 seconds period, or a time constant of about 3.3 seconds). This will not compensate for quick transient drops. High values make sense for slow flyers or cinematic type flying.
+            // To respond quickly, stick with the default vbat_sag_lpf_period of 2, or 200ms. This has a time constant of about 33ms, fast enough to respond very quickly to fast throttle blips and quick split-S turn type sags.
+            result += "\nset vbat_sag_lpf_period = 2";
+
+
+            result += "\n# --";
+            result += "\n# -- PID Tuning Tab Settings (Rateprofile Settings)";
+            result += "\n# --";
+            result += "\nset roll_rc_rate = 40";
+            result += "\nset pitch_rc_rate = 30";
+            result += "\nset yaw_rc_rate = 40";
+            result += "\nset roll_srate = 40";
+            result += "\nset pitch_srate = 30";
+            result += "\nset yaw_srate = 40";
+            if((throttleScalePercent >= 70) && (throttleScalePercent < 100)) {
+                result = result + "\nset throttle_limit_type = SCALE";
+                result = result + concatenate("\nset throttle_limit_percent = ", throttleScalePercent);
+            }
+            else {
+                result = result + "\nset throttle_limit_type = OFF";
+            }
+
+
+            result += "\n# --";
+            result += "\n# -- PID Tuning Tab Settings (Filter Settings)";
+            result += "\n# --";
+            result += "\nset gyro_lpf1_static_hz = 0";
+            result += "\nset gyro_lpf2_static_hz = 0";
+            result += "\nset dyn_notch_count = 1";
+            result += "\nset dyn_notch_q = 500";
+            result += "\nset gyro_lpf1_dyn_min_hz = 0";
+
+            result += "\nset simplified_dterm_filter = OFF";
+            result += "\nset dterm_lpf1_dyn_min_hz = 100";
+            result += "\nset dterm_lpf1_dyn_max_hz = 125";
+            result += "\nset dterm_lpf1_type = BIQUAD";
+            result += "\nset dterm_lpf2_static_hz = 0";
+
+            result += "\nset d_pitch = 34";
+            result += "\nset d_roll = 30";
+            result += "\nset simplified_dmax_gain = 0";
+
+
+            result += "\n# --";
+            result += "\n# -- Receiver Tab Settings";
+            result += "\n# --";
+            result += "\nset min_throttle = 1020";
+            result += "\nset min_check = 1020";
+            result += "\nset max_check = 2000";
+
+            result += "\nset feedforward_transition = 0";
+
+            result += "\nset rc_smoothing = ON";
+            result += "\nset rc_smoothing_setpoint_cutoff = 0";
+            result += "\nset rc_smoothing_feedforward_cutoff = 0";
+            result += "\nset rc_smoothing_throttle_cutoff = 0";
+            result += "\nset rc_smoothing_debug_axis = ROLL";
+
+            // basic requirements for ExpressLRS
+            result += "\nset serialrx_provider = CRSF";
+            
+            //  500hz default settings in case no-one selects a tuning option
+            result += "\nset feedforward_averaging = 2_POINT";
+            result += "\nset feedforward_smooth_factor = 65";
+            result += "\nset feedforward_jitter_factor = 5";
+
+            // sharp handling for racing (25 of auto RC smoothing = 290hz RC smoothing):
+            result += "\nset feedforward_jitter_factor = 3";
+            result += "\nset feedforward_boost = 18";
+            result += "\nset rc_smoothing_auto_factor = 25";
+            result += "\nset rc_smoothing_auto_factor_throttle = 25";
+
+            // per cell or whole pack voltage readings:
+            result += "\nset report_cell_voltage = ON";
+
+
+            if(includeModes) {
+                result += "\n# --";
+                result += "\n# -- Modes Tab Settings";
+                result += "\n# --";
+                result += "\naux 0 0 0 1500 2100 0 0";
+                result += "\naux 1 1 3 1500 2100 0 0";
+                result += "\naux 2 26 5 1300 1700 0 0";
+                result += "\naux 3 28 2 1500 2100 0 0";
+                result += "\naux 4 31 5 1700 2100 0 0";
+                result += "\naux 5 35 1 1500 2100 0 0";
+            }
+
+
+            result += "\n# --";
+            result += "\n# -- Motors Tab Settings";
+            result += "\n# --";
+            result += "\nset yaw_motors_reversed = ON";
+            result += "\nset motor_pwm_protocol = DSHOT300";
+            result += "\nset dshot_bidir = ON";
+            result += "\nset motor_poles = 12";
+
+            // # --
+            // # -- Motors Tab Settings Extended
+            // # -- 
+            // # -- The following settings are changed when Bidirectional DShot is enabled
+            // # --
+            // # set dyn_notch_count = 1
+            // # set dyn_notch_q = 500
+
+
+            if(includeOSD) {
+                result += "\n# --";
+                result += "\n# -- OSD Tab Settings";
+                result += "\n# --";
+                result += "\nset vcd_video_system = HD";
+                result += "\nset osd_units = IMPERIAL";
+                result += "\nset osd_warn_bitmask = 50175";
+                result += "\nset osd_rssi_dbm_alarm = -95";
+                if(batteryCapacity > 0) {
+                    result = result + concatenate("\nset osd_cap_alarm = ", (batteryCapacity * 0.70));
+                }
+                result += "\nset osd_tim1 = 2561";
+                result += "\nset osd_tim2 = 2560";
+                result += "\nset osd_vbat_pos = 395";
+                result += "\nset osd_rssi_pos = 194";
+                result += "\nset osd_link_quality_pos = 13580";
+                result += "\nset osd_rssi_dbm_pos = 14336";
+                result += "\nset osd_rsnr_pos = 448";
+                result += "\nset osd_tim_1_pos = 14358";
+                result += "\nset osd_tim_2_pos = 87";
+                result += "\nset osd_remaining_time_estimate_pos = 33";
+                result += "\nset osd_flymode_pos = 15374";
+                result += "\nset osd_throttle_pos = 240";
+                result += "\nset osd_vtx_channel_pos = 30727";
+                result += "\nset osd_current_pos = 15365";
+                result += "\nset osd_mah_drawn_pos = 14366";
+                result += "\nset osd_craft_name_pos = 14880";
+                result += "\nset osd_pilot_name_pos = 15915";
+                result += "\nset osd_home_dist_pos = 98";
+                result += "\nset osd_flight_dist_pos = 130";
+                result += "\nset osd_power_pos = 1551";
+                result += "\nset osd_warnings_pos = 14579";
+                result += "\nset osd_avg_cell_voltage_pos = 14349";
+                result += "\nset osd_battery_usage_pos = 33002";
+                result += "\nset osd_disarmed_pos = 14645";
+                result += "\nset osd_ready_mode_pos = 14678";
+                result += "\nset osd_esc_tmp_pos = 163";
+                result += "\nset osd_esc_rpm_pos = 150";
+                result += "\nset osd_rtc_date_time_pos = 426";
+                result += "\nset osd_flip_arrow_pos = 14616";
+                result += "\nset osd_core_temp_pos = 12544";
+                result += "\nset osd_sys_vtx_temp_pos = 12576";
+                result += "\nset osd_stat_bitmask = 28554979";
+                result += "\nset osd_displayport_device = MSP";
+                result += "\nset osd_canvas_width = 50";
+                result += "\nset osd_canvas_height = 18";
+            }
+
+
+            result += "\n# --";
+            result += "\n# -- Video Transmitter Tab Settings";
+            result += "\n# --";
+            // # serial 0 131073 115200 57600 0 115200
+            result += "\n# reset VTXtable";
+            result += "\nvtxtable bands 0";
+            result += "\nvtxtable channels 0";
+            result += "\nvtxtable powerlevels 0";
+            result += "\nvtxtable powervalues";
+            result += "\nvtxtable powerlabels";
+            result += "\n# vtxtable";
+            result += "\nvtxtable bands 6";
+            result += "\nvtxtable channels 8";
+            result += "\nvtxtable band 1 BOSCAM_A A FACTORY 0 0 0 0 0 0 0 0";
+            result += "\nvtxtable band 2 BOSCAM_B B FACTORY 0 0 0 0 0 0 0 0";
+            result += "\nvtxtable band 3 BOSCAM_E E FACTORY 0 0 0 0 0 0 0 0";
+            result += "\nvtxtable band 4 FATSHARK F FACTORY 0 5760 0 5800 0 0 0 0";
+            result += "\nvtxtable band 5 RACEBAND R FACTORY 5658 5695 5732 5769 5806 5843 5880 5917";
+            result += "\nvtxtable band 6 IMD6 I CUSTOM 0 0 0 0 0 0 0 0";
+            result += "\nvtxtable powerlevels 3";
+            result += "\nvtxtable powervalues 14 23 0";
+            result += "\nvtxtable powerlabels 25 200 0";
+            result += "\n# vtx - sets aux 5 as a power level switch for VTX";
+            result += "\nvtx 0 4 0 0 3 900 1300";
+            result += "\nvtx 1 4 0 0 1 1300 1700";
+            result += "\nvtx 2 4 0 0 2 1700 2100";
+            result += "\n# rxfail - sets a failsave on aux 5, moving the switch position to 1000 (turns VTX off)";
+            result += "\nrxfail 8 s 1000";
+            result += "\n# vtx - defaults set during bootup";
+            result += concatenate("\nset vtx_band = ", vtxBand);
+            result += concatenate("\nset vtx_channel = ", vtxChannel);
+            result += "\nset vtx_power = 3";
+
+            // # This is automatically set based on vtx_band and vtx_channel values, no need to specifically set the value
+            // # set vtx_freq = 5917
+
+
+            if(includeBlackbox) {
+                result += "\n# --";
+                result += "\n# -- Blackbox Tab Settings";
+                result += "\n# --";
+                result += "\nset blackbox_sample_rate = 1/2";
+                result += "\nset debug_mode = GYRO_SCALED";
+            }
+            
+            result += "\n# --";
+            result += "\n# -- Other Settings";
+            result += "\n# --";
+            result += concatenate("\nset crash_recovery = ", crashRecovery);
+
+            result += "\n# -- OSD ESC RPM Alarm - shows ESC1234 with an R in place of a the motor number that is jammed";
+            result += "\nset osd_esc_rpm_alarm = 1000";
+            
+            
+            
+            
+            // result = result + "\n</code>";
+            // result = result + "\n</pre>";
+
+            document.getElementById("cli-commands").innerHTML = result;
+            // document.write (result);
+         }
+
+         function CopyToClipboard() {
+            // Get the text field
+            var copyText = document.getElementById("cli-commands").innerHTML;
+
+            // Select the text field
+            // copyText.select();
+            // copyText.setSelectionRange(0, 99999); // For mobile devices
+
+            // Copy the text inside the text field
+            navigator.clipboard.writeText(copyText);
+         }
+
+      </script>
+   </head>
+   
+   <body>
+    <div class="w3-container w3-blue">
+        <h2>Input Form</h2>
+    </div>
+
+      <form class="w3-container">
+
+        <label for="flight-controller">Flight Controller:</label>
+        <select class="w3-select w3-border w3-round" id="flight-controller", name="flight-controller">
+            <option value="NA" selected>N/A</option>
+            <option value="TURC">TuneRC Poly F405</option>
+          </select>        
+        </p>
+
+        <label for="frame">Frame:</label>
+        <select class="w3-select w3-border w3-round" id="frame", name="frame">
+            <option value="NA" selected>N/A</option>
+            <option value="UBR116LP">UBR116LP</option>
+            <option value="UBR128LP">UBR128LP</option>
+          </select>        
+        </p>
+
+        <p>
+        <label for="craft-name">Craft name:</label>
+        <input class="w3-input w3-border w3-round" type="text" id="craft-name" name="craft-name" value="">
+        </p>
+
+        <p>
+        <label for="pilot-name">Pilot name:</label>
+        <input class="w3-input w3-border w3-round" type="text" id="pilot-name" name="pilot-name" value="">
+        </p>
+
+        <p>
+        <label for="elrs-rx-uart">ELRS RX UART:</label>
+        <input class="w3-input w3-border w3-round" type="text" id="elrs-rx-uart" name="elrs-rx-uart" value="">
+        </p>
+        <p>
+
+        <p>
+        <label for="hdzero-vtx-uart">HDZERO VTX UART:</label>
+        <input class="w3-input w3-border w3-round" type="text" id="hdzero-vtx-uart" name="hdzero-vtx-uart" value="">
+        </p>
+    
+        <label for="vtx-band">VTX band:</label>
+        <select class="w3-select w3-border w3-round" id="vtx-band", name="vtx-band">
+            <option value="1">A</option>
+            <option value="2">B</option>
+            <option value="3">E</option>
+            <option value="4">F</option>
+            <option value="5" selected>R</option>        
+          </select>        
+          <!-- <input class="w3-input w3-border w3-round" type="text" id="vtx-band" name="vtx-band" value="5"> -->
+        </p>
+
+        <p>
+        <label for="vtx-channel">VTX channel:</label>
+        <select class="w3-select w3-border w3-round" id="vtx-channel" name="vtx-channel">
+            <option value="1" selected>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+          </select>        
+        <!-- <input class="w3-input w3-border w3-round" type="text" id="vtx-channel" name="vtx-channel" value="1"> -->
+        </p>
+
+        <p>
+        <label for="battery-capacity">Battery capacity:</label>
+        <input class="w3-input w3-border w3-round" type="text" id="battery-capacity" name="battery-capacity" value="0">
+        </p>
+
+        <p>
+        <label for="vbat-scale">VBat Scale:</label>
+        <input class="w3-input w3-border w3-round" type="text" id="vbat-scale" name="vbat-scale" value="0">
+        </p>
+
+        <p>
+        <label for="ibata-scale">IBata Scale:</label>
+        <input class="w3-input w3-border w3-round" type="text" id="ibata-scale" name="ibata-scale" value="0">
+        </p>
+
+        <p>
+        <label for="esc-pwm-frequency">ESC PWM Frequency:</label>
+        <select class="w3-select w3-border w3-round" id="esc-pwm-frequency", name="esc-pwm-frequency">
+            <option value="24">24</option>
+            <option value="48" selected>48</option>
+            <option value="96">96</option>
+          </select>        
+        <!-- <input class="w3-input w3-border w3-round" type="text" id="esc-pwm-frequency" name="esc-pwm-frequency" value="48"> -->
+        </p>
+
+        <p>
+        <label for="prop-size-inches">Prop size (inches):</label>
+        <input class="w3-input w3-border w3-round" type="text" id="prop-size-inches" name="prop-size-inches" value="2">
+        </p>
+
+        <p>
+        <label for="throttle-scale-percent">Throttle scale percent (100 = OFF):</label>
+        <input class="w3-input w3-border w3-round" type="text" id="throttle-scale-percent" name="throttle-scale-percent" value="100">
+        </p>
+
+        <p>
+        <input id="include-osd" class="w3-check" type="checkbox" checked="checked">
+        <label>Include OSD layout (this will overwrite your OSD if you apply the CLI commands)</label></p>
+        <p>
+
+        <p>
+        <input id="include-modes" class="w3-check" type="checkbox" checked="checked">
+        <label>Include Modes (this will overwrite your modes if you apply the CLI commands)</label></p>
+        <p>
+
+        <p>
+        <input id="include-blackbox" class="w3-check" type="checkbox" checked="checked">
+        <label>Include Blackbox logging (check this if your flight controller is capable of capturing blackbox logs)</label></p>
+        <p>
+
+        <p>
+        <input id="acc-hardware" class="w3-check" type="checkbox" checked="checked">
+        <label>Enable accelerometer)</label></p>
+        <p>
+
+        <p>
+        <input id="crash-recovery" class="w3-check" type="checkbox" checked="checked">
+        <label>Enable crash recovery</label></p>
+        <p>
+
+        <!-- <p>
+        <button class="w3-btn w3-blue-grey" onclick="DisplayFunction()">Generate CLI Commands</button>
+        </p> -->
+        <div class="w3-container">
+        <input type = "button" class="w3-button w3-blue-grey" value="Generate CLI Commands" onclick = "DisplayFunction()">
+        </div>
+      </form>
+
+      <!-- <div class="w3-panel w3-black">
+        <p id="cli-commands">There have been no CLI commands generated yet.  Please fill in the values in the Input Form above, and click the 'Generate CLI Commands' button.</p>
+      </div>  -->
+
+      <div class="w3-container">
+        <button onclick="document.getElementById('modal-cli-command-window').style.display='block';DisplayFunction();" class="w3-button w3-black">Open Animated Modal</button>
+
+        <div id="modal-cli-command-window" class="w3-modal">
+        <div class="w3-modal-content w3-animate-zoom w3-card-4">
+        <header class="w3-container w3-teal"> 
+        <span onclick="document.getElementById('modal-cli-command-window').style.display='none'" 
+        class="w3-button w3-display-topright">&times;</span>
+        <h2>Modal Header</h2>
+        </header>
+        <!-- <div class="w3-container">
+        <p>Some text..</p>
+        <p>Some text..</p>
+        </div> -->
+        
+        <div class="w3-container w3-black">
+            <pre>
+                <code id="cli-commands">
+                    There have been no CLI commands generated yet.  Please fill in the values in the Input Form above, and click the 'Generate CLI Commands' button.
+                </code>
+            </pre>
+        <!-- <p id="cli-commands"> -->
+            
+        <!-- </p> -->
+        <button onclick="CopyToClipboard()" class="w3-button w3-black">Copy CLI Commands</button>
+        </div>     
+           
+
+        <footer class="w3-container w3-teal">
+        <p>Modal Footer</p>
+        </footer>
+        </div>
+        </div>      
+        </div>
+   </body>
+</html>
