@@ -63,15 +63,21 @@
       box-sizing: border-box; /* Include padding in the total width */
     }
 
-
-
     .banner-image {
       width: 100%;
       object-fit: cover;
       object-position: center middle; /* Adjust this line to change the position */
       height: 300px; /* Adjust the height as needed */
     }
-  </style>
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #333; /* Dark background for the toolbar */
+      padding: 10px;
+    }
+</style>
   <title>Your Web Page</title>
 </head>
 <body>
@@ -141,9 +147,9 @@
 </div>
 
 <!-- Footer -->
-<footer class="w3-container w3-black w3-center">
-  <a href="#" target="_blank" class="w3-padding w3-hover-opacity"><img src="youtube_icon.png" alt="YouTube" style="width:30px;"></a>
-  <a href="#" target="_blank" class="w3-padding w3-hover-opacity"><img src="discord_icon.png" alt="Discord" style="width:30px;"></a>
+<footer class="w3-container w3-center footer">
+  <a href="https://www.youtube.com/mpschommer" target="_blank" class="w3-padding w3-hover-opacity"><img src="./img/yt_logo_mono_dark.png" alt="YouTube" style="width:100px;"></a>
+  <!-- <a href="#" target="_blank" class="w3-padding w3-hover-opacity"><img src="discord_icon.png" alt="Discord" style="width:30px;"></a> -->
 </footer>
 
 <script>
