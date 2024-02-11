@@ -1,0 +1,70 @@
+body {
+  background-color: #ffffff; /* White background */
+  color: #333; /* Dark text color */
+  font-family: Arial, sans-serif;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333; /* Dark background for the toolbar */
+  padding: 10px;
+}
+
+.logo img {
+  height: 30px;
+  width: auto;
+}
+
+.w3-bar-item {
+  color: #fff; /* White text color for toolbar buttons */
+}
+
+.w3-button {
+  background-color: #333; /* Dark accent color for buttons */
+}
+
+.w3-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+.banner-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%; /* Full width */
+  margin: 0;   /* Remove default margin */
+  padding: 0;  /* Remove default padding */
+  box-sizing: border-box; /* Include padding in the total width */
+}
+
+.banner-image {
+  width: 100%;
+  object-fit:cover;
+  object-position: center bottom; /* Adjust this line to change the position */
+  height: 800px; /* Adjust the height as needed */
+}
+
+.section {
+    margin-bottom: 20px;
+    cursor: pointer;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Vertically center items */
+}
+
+.section img {
+    margin-left: auto; /* Align the image to the right */
+    height: 256px;
+}
+
+.section .content {
+    flex: 1; /* Allow content to grow and take up remaining space */
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333; /* Dark background for the toolbar */
+  padding: 10px;
+}

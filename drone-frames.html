@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="fpv-schome1-com-default.css">
 
-  <title>Schome1 FPV</title>
+  <title>Schome1 FPV - Drone Frames</title>
 </head>
 <body>
 
@@ -25,47 +25,29 @@
 </div>
 
 <!-- Banner Image -->
-<div class="w3-container banner-container">
+<!-- <div class="w3-container banner-container">
   <img src="./img/outdoor-course.jpg" alt="Banner Image" class="w3-image banner-image">
-</div>
-
-<br/>
+</div> -->
 
 <!-- Body Content -->
-<div class="w3-container" id="content">
+<div class="w3-container" id="frames">
   <!-- Home Content (default) -->
   <div id="home">
-
-    <!-- Section - Drone Frames -->
-    <div class="w3-card-4 w3-padding section" onclick="window.location.href='./frames.html'">
+    <h2>Drone Frames</h2>
+    
+    <!-- Section - Frames -->
+    <div class="w3-card-4 w3-padding section" onclick="window.location.href='https://www.example.com/link2';">
       <div class="w3-container">
           <h3>Frames</h3>
           <p>Description of frames</p>
       </div>
-      <img src="./img/mystuff-frame.png" alt="Drone Frame"">
+      <img src="./img/mystuff-frame.png" alt="Frame" style="width:34%">
     </div>
 
-    <!-- Section - Printed Circuit Boards -->
-    <div class="w3-card-4 w3-padding section" onclick="window.location.href='./pcbs.html';">
-      <div class="w3-container">
-          <h3>Printed Circuit Boards (PCBs)</h3>
-          <p>Description of printed circuit boards</p>
-      </div>
-      <img src="./img/mystuff-pcb.png" alt="Printed Circuit Board">
-    </div>
-
-    <!-- Section - Tutorials -->
-    <div class="w3-card-4 w3-padding section" onclick="window.location.href='./tutorials.html';">
-      <div class="w3-container">
-          <h3>Tutorials</h3>
-          <p>Description of tutorials</p>
-      </div>
-      <img src="./img/mystuff-pcb.png" alt="Tutorial">
-    </div>
   </div>
 
   <!-- Contact Content -->
-  <div id="contact" style="display: none;">
+  <div id="contact">
     <h2>Contact</h2>
     <p>Feel free to reach out to us for any inquiries or feedback. We're here to assist you!</p>
     <form>
@@ -83,7 +65,7 @@
   </div>
 
   <!-- About Content -->
-  <div id="about" style="display: none;">
+  <div id="about">
     <h2>About Us</h2>
     <p>Learn more about our organization and mission. We're passionate about providing valuable content and services to our audience.</p>
     <h3>Our Team</h3>
@@ -101,25 +83,6 @@
   <a href="https://www.youtube.com/mpschommer" target="_blank" class="w3-padding w3-hover-opacity"><img src="./img/yt_logo_mono_dark.png" alt="YouTube" style="width:100px;"></a>
   <!-- <a href="#" target="_blank" class="w3-padding w3-hover-opacity"><img src="discord_icon.png" alt="Discord" style="width:30px;"></a> -->
 </footer>
-
-<!-- <script>
-  // JavaScript function to toggle content based on toolbar button click
-  function showContent(contentType) {
-    // Hide all content sections
-    document.querySelectorAll('#content > div').forEach(element => {
-      element.style.display = 'none';
-    });
-
-    // Show the selected content
-    document.getElementById(contentType).style.display = 'block';
-
-    // Toggle the active class for toolbar buttons
-    document.querySelectorAll('.w3-bar-item').forEach(button => {
-      button.classList.remove('w3-black');
-    });
-    document.querySelector(`button[data-type="${contentType}"]`).classList.add('w3-black');
-  }
-</script> -->
 
 </body>
 </html>
