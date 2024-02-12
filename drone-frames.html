@@ -8,6 +8,14 @@
 
   <title>Schome1 FPV - Drone Frames</title>
 </head>
+
+<style>
+  .callout {
+    font-size: smaller;
+    color: #666;
+  }
+</style>
+
 <body>
 
 <!-- Logo and Toolbar -->
@@ -20,8 +28,8 @@
   <button class="w3-bar-item w3-button" onclick="window.location.href='./printed-circuit-boards.html'" data-type="pcbs">Printed Circuit Boards</button>
   <button class="w3-bar-item w3-button" onclick="window.location.href='./drone-frames.html'" data-type="frames">Drone Frames</button>
   <button class="w3-bar-item w3-button" onclick="window.location.href='./tutorials.html'" data-type="tutorials">Tutorials</button>
-  <button class="w3-bar-item w3-button" onclick="window.location.href='./contact.html'" data-type="contact">Contact</button>
-  <button class="w3-bar-item w3-button" onclick="window.location.href='./about.html'" data-type="about">About</button>
+  <button class="w3-bar-item w3-button" onclick="window.location.href='./contact.html'" data-type="contact">Contact Me</button>
+  <!-- <button class="w3-bar-item w3-button" onclick="window.location.href='./about.html'" data-type="about">About</button> -->
 </div>
 
 <!-- Banner Image -->
@@ -33,48 +41,99 @@
 <div class="w3-container" id="frames">
   <!-- Home Content (default) -->
   <div id="home">
-    <h2>Drone Frames</h2>
-    
-    <!-- Section - Frames -->
-    <div class="w3-card-4 w3-padding section" onclick="window.location.href='https://www.example.com/link2';">
+    <h2>Outdoor Drone Frames</h2>
+    <p>
+      The Ultimate Backyard Racer (UBR) series with a Low Profile (LP). The low profile aspect of this frame moves the FPV camera off of the stack, which has 
+      the following benefits.
+      <li>protects the camera by providing a secure mount, and since it's not the only thing on top of the drone, it won't take all of the punishment from crashes and collissions</li>
+      <li>allows for easy access to the components on the stack</li>
+      <li>protects the stack components</li>
+    </p>
+    <p class="callout">frame sizes are measured motor to motor, diagonally, in millimeters</p>
+
+    <br/>
+
+    <!-- Section -->
+    <div class="w3-card-4 w3-padding section" style="background-color: #999;" onclick="window.location.href='https://www.example.com/link2';">
       <div class="w3-container">
-          <h3>Frames</h3>
-          <p>Description of frames</p>
+          <h3>UBR110-LP</h3>
+          <p>The UBR110-LP is a drone frame made for 2" props.  It's a durable frame that was built for flying in a small area.</p>
+          <li>Frame Size: 110 mm</li>
+          <li>Propeller Size: 2"</li>
+          <li>Motor Size: 1202.5 ~ 11500 KV</li>
+          <li>Flight Controller: Whoop Style AIO with 20A+ ESC</li>
+          <li>Video: HDZero is preferred, but should work with other digital systems as well as analog</li>
+          <li>Battery: 2S 550-720 mAh LiPo/LiHV</li>
       </div>
       <img src="./img/mystuff-frame.png" alt="Frame" style="width:34%">
     </div>
 
-  </div>
+    <!-- Section -->
+    <div class="w3-card-4 w3-padding section" style="background-color: #ccc;" onclick="window.location.href='https://www.example.com/link2';">
+      <div class="w3-container">
+          <h3>UBR128-LP</h3>
+          <p>
+            The UBR128-LP is a drone frame made for 2.5" props.  It's a durable frame that was built for flying in a small area. 
+          </p>
+          <li>Frame Size: 128 mm</li>
+          <li>Propeller Size: 2.5"</li>
+          <li>Motor Size: 1202.5 ~ 11500 KV</li>
+          <li>Flight Controller: Whoop Style AIO with 20A+ ESC</li>
+          <li>Video: HDZero is preferred, but should work with other digital systems as well as analog</li>
+          <li>Battery: 2S 550-720 mAh LiPo/LiHV</li>
+      </div>
+      <img src="./img/mystuff-frame.png" alt="Frame" style="width:34%">
+    </div>
 
-  <!-- Contact Content -->
-  <div id="contact">
-    <h2>Contact</h2>
-    <p>Feel free to reach out to us for any inquiries or feedback. We're here to assist you!</p>
-    <form>
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required>
-      <br>
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
-      <br>
-      <label for="message">Message:</label>
-      <textarea id="message" name="message" rows="4" required></textarea>
-      <br>
-      <input type="submit" value="Submit">
-    </form>
-  </div>
+    <!-- Section -->
+    <div class="w3-card-4 w3-padding section" style="background-color: #999;" onclick="window.location.href='https://www.example.com/link2';">
+      <div class="w3-container">
+          <h3>UBR142-LP</h3>
+          <p>
+            The UBR142-LP is a drone frame made for 3" props.  It's a durable frame that was built for flying in a small area. 
+          </p>
+          <li>Frame Size: 142 mm</li>
+          <li>Propeller Size: 3"</li>
+          <li>Motor Size: 1202.5 ~ 11500 KV</li>
+          <li>Flight Controller: Whoop Style AIO with 20A+ ESC</li>
+          <li>Video: HDZero is preferred, but should work with other digital systems as well as analog</li>
+          <li>Battery: 2S 550-720 mAh LiPo/LiHV</li>
+      </div>
+      <img src="./img/mystuff-frame.png" alt="Frame" style="width:34%">
+    </div>
 
-  <!-- About Content -->
-  <div id="about">
-    <h2>About Us</h2>
-    <p>Learn more about our organization and mission. We're passionate about providing valuable content and services to our audience.</p>
-    <h3>Our Team</h3>
-    <ul>
-      <li>John Doe - CEO</li>
-      <li>Jane Smith - Lead Developer</li>
-      <li>Emily Johnson - Marketing Coordinator</li>
-    </ul>
-    <!-- Add more about us content here -->
+    <br/>
+    <hr>
+
+    <h2>Indoor Drone Frames</h2>
+    <p>
+      The Ultimate Indoor Racer (UIR) series Hybrid Frame (HF). This frame blends a hard underbody frame that serves as the base for all of the components
+      with a modified plastic ducted frame that protects the components and keeps the propellers guarded.  The benefits of the hybrid frame include the following:
+      <li>components are more secure since they are attached to a stronger frame</li>
+      <li>components are still protected by the modified plastic ducted frame</li>
+      <li>the durability of this frame allows for the use of 2S batteries for more power</li>
+    </p>
+    <p class="callout">frame sizes are measured motor to motor, diagonally, in millimeters</p>
+
+    <br/>
+
+    <!-- Section -->
+    <div class="w3-card-4 w3-padding section" style="background-color: #999;" onclick="window.location.href='https://www.example.com/link2';">
+      <div class="w3-container">
+          <h3>UIR75</h3>
+          <p>
+            The UIR75 is a hybrid drone frame made for 40 mm props.  It blends a hard underbody frame that serves as the base for all of the components
+            with a modified plastic ducted frame that protects the components and keeps the propellers guarded.
+          </p>
+          <li>Frame Size: 75 mm</li>
+          <li>Propeller Size: 40 mm</li>
+          <li>Motor Size: 1002 ~ 14000 KV</li>
+          <li>Flight Controller: Whoop Style AIO with 12A+ ESC</li>
+          <li>Video: HDZero is preferred, but should work with other digital systems as well as analog</li>
+          <li>Battery: 2S 300-350 mAh LiPo/LiHV</li>
+      </div>
+      <img src="./img/mystuff-frame.png" alt="Frame" style="width:34%">
+    </div>
   </div>
 </div>
 

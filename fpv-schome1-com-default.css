@@ -42,7 +42,7 @@ body {
   width: 100%;
   object-fit:cover;
   object-position: center bottom; /* Adjust this line to change the position */
-  height: 800px; /* Adjust the height as needed */
+  height: 700px; /* Adjust the height as needed */
 }
 
 .section {
