@@ -1,6 +1,6 @@
 body {
-  background-color: #ffffff; /* White background */
-  color: #333; /* Dark text color */
+  background-color: #666; /* White background */
+  color: #fff; /* Dark text color */
   font-family: Arial, sans-serif;
 }
 
@@ -50,10 +50,20 @@ body {
 }
 
 .section {
-    margin-bottom: 20px;
-    cursor: pointer;
-    display: flex; /* Use flexbox */
-    align-items: center; /* Vertically center items */
+  margin-bottom: 20px;
+  cursor: pointer;
+  display: flex; /* Use flexbox */
+  align-items: center; /* Vertically center items */
+}
+
+.section-even {
+    background-color: #999;
+    color: #003;
+}
+
+.section-odd {
+  background-color: #ccc;
+  color: #003;
 }
 
 .section img {
