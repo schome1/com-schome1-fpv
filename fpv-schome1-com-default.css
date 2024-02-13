@@ -30,19 +30,23 @@ body {
 }
 
 .banner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
   position: relative;
   width: 100%; /* Full width */
   margin: 0;   /* Remove default margin */
   padding: 0;  /* Remove default padding */
   box-sizing: border-box; /* Include padding in the total width */
+  background-color: #003;
 }
 
 .banner-image {
-  width: 100%;
+  width: 1600px;
   object-fit:cover;
-  object-position: center bottom; /* Adjust this line to change the position */
-  height: 700px; /* Adjust the height as needed */
+  object-position: center middle; /* Adjust this line to change the position */
+  height: 300px; /* Adjust the height as needed */
 }
 
 .section {
