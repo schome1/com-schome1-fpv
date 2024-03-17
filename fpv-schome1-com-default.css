@@ -43,10 +43,10 @@ body {
 }
 
 .banner-image {
-  width: 1600px;
+  width: 1230px;
   object-fit:cover;
   object-position: center middle; /* Adjust this line to change the position */
-  height: 300px; /* Adjust the height as needed */
+  margin: 2px;
 }
 
 .section {

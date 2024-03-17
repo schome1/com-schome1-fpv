@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="fpv-schome1-com-default.css">
+
+  <title>Schome1 FPV - Home</title>
+  <link rel="icon" href="./img/schome1fpv-icon.png" type="image/png">
+</head>
+<body>
+
+<!-- Logo and Toolbar -->
+<div class="w3-bar toolbar">
+  <div class="w3-container">
+    <div class="w3-row">
+      <div class="w3-col 4 ">
+  <div class="w3-bar-item logo">
+    <img src="./img/schome1fpv-logo-icon.png" alt="Logo">
+  </div>
+  <div style="flex: 1;"></div>
+  <button class="w3-bar-item w3-button" onclick="window.location.href='./index.html'" data-type="home">Home</button>
+  <button class="w3-bar-item w3-button" onclick="window.location.href='./printed-circuit-boards.html'" data-type="pcbs">Printed Circuit Boards</button>
+  <button class="w3-bar-item w3-button" onclick="window.location.href='./frames-and-accessories.html'" data-type="frames">Frames and Accessories</button>
+  <button class="w3-bar-item w3-button" onclick="window.location.href='./tutorials.html'" data-type="tutorials">Tutorials</button>
+  <button class="w3-bar-item w3-button" onclick="window.location.href='./contact.html'" data-type="contact">Contact Me</button>
+   <!-- <button class="w3-bar-item w3-button" onclick="window.location.href='./about.html'" data-type="about">About</button> -->
+   </div>
+   </div>
+   </div>
+</div>
+
+<!-- Banner Image -->
+<div class="w3-container banner-container">
+  <img src="./img/schome1fpv-logo.png" alt="Banner Image" class="w3-image banner-image">
+</div>
+
+<br/>
+
+<!-- Body Content -->
+<div class="w3-container" id="content">
+  <!-- Home Content (default) -->
+  <div id="home">
+
+    <!-- Section - UBR Frames -->
+    <div class="w3-card-4 w3-padding section section-even"  onclick="window.location.href='./frames-and-accessories.html'">
+      <div class="w3-container">
+        <div class="w3-row">
+          <div class="w3-col m8">
+            <h3>Frames and Accessories</h3>
+            <p>Click this card to see the drone frames and accessories.</p>  
+          </div>
+          <div class="w3-col m4">
+            <img src="./img/ubr-frame-image.png" alt="Drone Frame"">            
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section - Printed Circuit Boards -->
+    <div class="w3-card-4 w3-padding section section-odd" onclick="window.location.href='./printed-circuit-boards.html';">
+      <div class="w3-container">
+          <h3>Printed Circuit Boards</h3>
+          <p>Click this card to see printed circuit boards (PCBs) that we use for series charging and for other FPV related tasks.</p>
+      </div>
+      <img src="./img/pcb-image.png" alt="Printed Circuit Board">
+    </div>
+
+    <!-- Section - Tutorials -->
+    <div class="w3-card-4 w3-padding section section-even" onclick="window.location.href='./tutorials.html';">
+      <div class="w3-container">
+          <h3>Tutorials</h3>
+          <p>Description of tutorials</p>
+      </div>
+      <img src="./img/missing.png" alt="Tutorial">
+    </div>
+  </div>
+
+  <!-- Contact Content -->
+  <div id="contact" style="display: none;">
+    <h2>Contact</h2>
+    <p>Feel free to reach out to us for any inquiries or feedback. We're here to assist you!</p>
+    <form>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      <br>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      <br>
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
+      <br>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+
+  <!-- About Content -->
+  <div id="about" style="display: none;">
+    <h2>About Us</h2>
+    <p>Learn more about our organization and mission. We're passionate about providing valuable content and services to our audience.</p>
+    <h3>Our Team</h3>
+    <ul>
+      <li>John Doe - CEO</li>
+      <li>Jane Smith - Lead Developer</li>
+      <li>Emily Johnson - Marketing Coordinator</li>
+    </ul>
+    <!-- Add more about us content here -->
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-center footer">
+  <a href="https://www.youtube.com/@Schome1FPV" target="_blank" class="w3-padding w3-hover-opacity"><img src="./img/yt_logo_mono_dark.png" alt="YouTube" style="width:100px;"></a>
+  <!-- <a href="#" target="_blank" class="w3-padding w3-hover-opacity"><img src="discord_icon.png" alt="Discord" style="width:30px;"></a> -->
+</footer>
+
+<!-- <script>
+  // JavaScript function to toggle content based on toolbar button click
+  function showContent(contentType) {
+    // Hide all content sections
+    document.querySelectorAll('#content > div').forEach(element => {
+      element.style.display = 'none';
+    });
+
+    // Show the selected content
+    document.getElementById(contentType).style.display = 'block';
+
+    // Toggle the active class for toolbar buttons
+    document.querySelectorAll('.w3-bar-item').forEach(button => {
+      button.classList.remove('w3-black');
+    });
+    document.querySelector(`button[data-type="${contentType}"]`).classList.add('w3-black');
+  }
+</script> -->
+
+</body>
+</html>
